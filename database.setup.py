@@ -5,7 +5,6 @@ def setup_database():
     conn = sqlite3.connect('pos_database.db')
     c = conn.cursor()
 
-    # Create Inventory table
     c.execute('''CREATE TABLE IF NOT EXISTS Inventory (
                     id INTEGER PRIMARY KEY,
                     code TEXT UNIQUE,
@@ -15,14 +14,12 @@ def setup_database():
                     category TEXT
                 )''')
 
-    # Create Orders table
     c.execute('''CREATE TABLE IF NOT EXISTS Orders (
                     id INTEGER PRIMARY KEY,
                     total REAL,
                     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
                 )''')
 
-    # Create OrderItems table
     c.execute('''CREATE TABLE IF NOT EXISTS OrderItems (
                     id INTEGER PRIMARY KEY,
                     order_id INTEGER,
@@ -33,7 +30,6 @@ def setup_database():
                     FOREIGN KEY(item_code) REFERENCES Inventory(code)
                 )''')
 
-    # Prepopulate Inventory
     inventory_items = [
         ('SIG', 'Signature Iced Coffee', 150, 50, 'Coffee'),
         ('MLT', 'Matcha Latte', 170, 40, 'Coffee'),
