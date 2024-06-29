@@ -46,7 +46,6 @@ class POSApplication(Tk):
         self.item_code_entry = Entry(order_entry_frame, font=("Arial", 14))
         self.item_code_entry.grid(row=1, column=1, padx=5, pady=10)
 
-        # Label and Entry for Quantity
         Label(order_entry_frame, text="Quantity", font=("Arial", 14)).grid(row=2, column=0, padx=5, pady=10, sticky='w')
         self.quantity_entry = Entry(order_entry_frame, font=("Arial", 14))
         self.quantity_entry.grid(row=2, column=1, padx=5, pady=10)
