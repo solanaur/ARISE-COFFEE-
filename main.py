@@ -1,5 +1,5 @@
 import sqlite3
-from tkinter import END, Button, Entry, Frame, Label, Text, Scrollbar, Tk, messagebox, TOP
+from tkinter import END, Button, Entry, Frame, Label, Text, Scrollbar, Tk, messagebox
 
 
 class POSApplication(Tk):
@@ -46,6 +46,7 @@ class POSApplication(Tk):
         self.item_code_entry = Entry(order_entry_frame, font=("Arial", 14))
         self.item_code_entry.grid(row=1, column=1, padx=5, pady=10)
 
+        # Label and Entry for Quantity
         Label(order_entry_frame, text="Quantity", font=("Arial", 14)).grid(row=2, column=0, padx=5, pady=10, sticky='w')
         self.quantity_entry = Entry(order_entry_frame, font=("Arial", 14))
         self.quantity_entry.grid(row=2, column=1, padx=5, pady=10)
@@ -84,8 +85,7 @@ class POSApplication(Tk):
 
     def update_inventory_display(self):
         self.inventory_listbox.delete(1.0, END)
-        self.inventory_listbox.insert(END,
-                                      f"{'ID':<5}{'Code':<10}{'Name':<30}{'Price':<10}{'Stock':<10}{'Category':<15}\n")
+        self.inventory_listbox.insert(END, f"{'ID':<5}{'Code':<10}{'Name':<30}{'Price':<10}{'Stock':<10}{'Category':<15}\n")
         self.inventory_listbox.insert(END, "-" * 90 + "\n")
 
         for idx, (code, details) in enumerate(self.inventory.items(), start=1):
@@ -95,8 +95,7 @@ class POSApplication(Tk):
             stock_display = f"{details['stock']:<10}"
             category_display = f"{details['category']:<15}"
 
-            self.inventory_listbox.insert(END,
-                                          f"{id_display}{code:<10}{name_display}{price_display}{stock_display}{category_display}\n")
+            self.inventory_listbox.insert(END, f"{id_display}{code:<10}{name_display}{price_display}{stock_display}{category_display}\n")
 
         self.inventory_listbox.insert(END, "-" * 90 + "\n")
 
@@ -158,7 +157,7 @@ class POSApplication(Tk):
 
     def sign_out(self):
         self.destroy()
-        LoginApp().run()
+        LoginApp().mainloop()
 
 
 class LoginApp(Tk):
@@ -191,7 +190,7 @@ class LoginApp(Tk):
 
         if username == "admin" and password == "password":
             self.destroy()
-            POSApplication().run()
+            POSApplication().mainloop()
         else:
             messagebox.showerror("Login Failed", "Invalid username or password")
 
